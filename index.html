@@ -216,6 +216,65 @@ h2 {
         .hidden {
             display: none;
         }
+
+        /* Hamburger menu styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background-color: var(--text-color);
+    margin: 3px 0;
+    transition: 0.4s;
+}
+
+/* Hamburger animation */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 8%;
+        width: 90%;
+        background-color: rgba(26, 26, 46, 0.95);
+        padding: 20px;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    nav ul.active {
+        display: flex;
+        transform: translateY(0);
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -224,9 +283,14 @@ h2 {
     <header>
         <nav class="container">
             <img src="https://upload.wikimedia.org/wikipedia/en/4/49/Tshwane_University_of_Technology_logo.svg" alt="Tshwane University of Technology Logo" class="logo">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul>
                 <li><a href="#" onclick="showSection('home')">Home</a></li>
-                <li><a href="#" onclick="showSection('wash')">WASH</a></li>
+                <li><a href="#" onclick="showSection('wash')">WASH (Water, Sanitation and Hygiene)</a></li>
                 <li><a href="#" onclick="showSection('waste')">Waste Management</a></li>
                 <li><a href="#" onclick="showSection('occupational')">Occupational Health</a></li>
                 <li><a href="#" onclick="showSection('air')">Air Pollution</a></li>
@@ -640,6 +704,226 @@ h2 {
             
             particlesContainer.appendChild(particle);
         }
+
+         // Hamburger menu functionality
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
     </script>
+   
+</script>
+
+
+<style>/* Footer styling */
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #2e3057c4;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-content p {
+        margin: 0;
+        margin-right: 10px;
+    }
+
+    /* Futuristic button styling */
+    #designer-info-btn {
+        background-color: #00f7ff;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 0 0 40px rgba(0, 255, 255, 0.4), 0 0 80px rgba(0, 255, 255, 0.1);
+    }
+
+    #designer-info-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.9), 0 0 60px rgba(0, 255, 255, 0.6), 0 0 100px rgba(0, 255, 255, 0.3);
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 400px;
+        width: 90%;
+        position: relative;
+        text-align: left;
+        color: #000;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .close-button {
+        margin-top: 20px;
+        background-color: #ff4b5c;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .close-button:hover {
+        background-color: #ff6f61;
+    }
+    .designer-contact, .socials {
+margin-top: 20px;
+}
+
+.label {
+font-size: 16px;
+font-weight: bold;
+}
+
+.info {
+margin-top: 5px;
+display: block;
+color: #1e90ff;
+text-decoration: none;
+font-size: 14px;
+}
+
+.info:hover {
+text-decoration: underline;
+}
+
+.socials a {
+margin-right: 15px;
+color: #1e90ff;
+text-decoration: none;
+}
+
+.socials a:hover {
+text-decoration: underline;
+}
+
+    @media (max-width: 480px) {
+        .modal-content {
+            padding: 15px;
+            width: 100%;
+        }
+
+        .close-btn {
+            font-size: 20px;
+            top: 5px;
+            right: 15px;
+        }
+    }</style>
+    
+<!-- Designer Modal -->
+<div id="designer-modal" class="modal">
+<div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>Designer Information</h2>
+    <p>Brilliant Malepe is a versatile designer known for crafting impactful logos, captivating posters, dynamic animated videos, and user-friendly apps.</p>
+    <p>Brilliant also offers top-notch smartphones (iPhones, Samsung, Huawei) and laptops.</p>
+    
+    <!-- Contact Information -->
+    <div class="designer-contact">
+        <div class="label"><i class="fas fa-phone"></i> Contact Number:</div>
+        <a href="tel:+27726171976" class="info">0726171976</a>
+    </div>
+    
+    <div class="designer-contact">
+        <div class="label"><i class="far fa-envelope"></i> Email:</div>
+        <a href="mailto:malepebrilliant03@gmail.com" class="info">malepebrilliant03@gmail.com</a>
+    </div>
+    
+    <!-- Social Links -->
+    <div class="socials">
+        <button><a href="https://instagram.com/brilliant_malepe"><i class="fab fa-instagram"></i> Instagram</a></button>
+        <a href="https://linkedin.com/in/brilliant-malepe"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </div>
+    
+    <!-- WhatsApp Chat -->
+    <div class="designer-contact">
+        <div class="label"><i class="fab fa-whatsapp"></i> WhatsApp Chat:</div>
+        <a href="https://wa.me/27726171976" class="info">Chat with the Designer</a>
+    </div>
+    
+    <!-- Close Button -->
+    <button class="close-button">Close</button>
+</div>
+</div>
+
+<!-- Futuristic Button to Open Modal -->
+<footer>
+    <div class="footer-content">
+        <p>Coded by: Malepe Brilliant</p>
+        <button id="designer-info-btn">More About the Designer</button>
+    </div>
+</footer>
+
+
+<!-- JS for Particles and Modal Interaction -->
+
+
+<script>
+    // Modal Popup Handling
+    const modal = document.getElementById("designer-modal");
+    const btn = document.getElementById("designer-info-btn");
+    const closeBtn = document.querySelector(".close-btn");
+    const closeButton = document.querySelector(".close-button");
+
+    btn.onclick = function () {
+        modal.style.display = "flex";
+    }
+
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    closeButton.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+</body>
+
 </body>
 </html>
